@@ -1,29 +1,23 @@
-# trojan
+# trojan-http
 
-[![Build Status](https://dev.azure.com/GreaterFire/Trojan-GFW/_apis/build/status/trojan-gfw.trojan?branchName=master)](https://dev.azure.com/GreaterFire/Trojan-GFW/_build/latest?definitionId=5&branchName=master)
+Enable HTTP proxy with the aid of privoxy to deploy through Docker.
+Credit to [UP4DEV](http://www.up4dev.com/2020/03/07/http-proxy-for-trojan-by-docker/).
+Alpine is used instead of Ubuntu as the case of UP4DEV to slim down the image.
 
-An unidentifiable mechanism that helps you bypass GFW.
+## Usage
 
-Trojan features multiple protocols over `TLS` to avoid both active/passive detections and ISP `QoS` limitations.
+Setup the container using the code below.
 
-Trojan is not a fixed program or protocol. It's an idea, an idea that imitating the most common service, to an extent that it behaves identically, could help you get across the Great FireWall permanently, without being identified ever. We are the GreatER Fire; we ship Trojan Horses.
+```
+docker run \
+    --name trojan-proxy \
+    --restart unless-stopped \
+    -e REMOTE_ADDR="your host" \
+    -e PASSWORD="your password" \
+    -d \
+    -p <your SOCKS5 port>:1088 \
+    -p <your HTTP port>:1089 \
+    trkwyk/trojan-http
+```
 
-## Documentations
-
-An online documentation can be found [here](https://trojan-gfw.github.io/trojan/).  
-Installation guide on various platforms can be found in the [wiki](https://github.com/trojan-gfw/trojan/wiki/Binary-&-Package-Distributions).
-
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md).
-
-## Dependencies
-
-- [CMake](https://cmake.org/) >= 3.7.2
-- [Boost](http://www.boost.org/) >= 1.66.0
-- [OpenSSL](https://www.openssl.org/) >= 1.1.0
-- [libmysqlclient](https://dev.mysql.com/downloads/connector/c/)
-
-## License
-
-[GPLv3](LICENSE)
+For details please refer to [UP4DEV](http://www.up4dev.com/2020/03/07/http-proxy-for-trojan-by-docker/).
