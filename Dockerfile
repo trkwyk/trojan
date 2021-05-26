@@ -14,6 +14,6 @@ RUN apk update \
     libstdc++ boost-system boost-program_options mariadb-connector-c \
     &&  apk add --no-cache privoxy jq
 COPY entry.sh examples/client.json-example ./
-COPY privoxy.config /etc/privoxy/config/
+COPY privoxy.config /etc/privoxy/config
 EXPOSE 1088/tcp 1089/tcp
 CMD ["sh", "entry.sh"]
